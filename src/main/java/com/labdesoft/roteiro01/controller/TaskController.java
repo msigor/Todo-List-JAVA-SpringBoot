@@ -57,8 +57,8 @@ public class TaskController {
     @Operation(summary = "Adiciona uma tarefa na lista")
     public ResponseEntity<Task> addTask(@RequestBody Task task) {
         try {
-            Task newTask = taskRepository.save(new Task(task.getDescription())); 
-                                                                            
+            Task newTask = taskRepository.save(new Task(task.getDescription()));
+
             return new ResponseEntity<>(newTask, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -83,17 +83,11 @@ public class TaskController {
     @DeleteMapping("/task/{id}")
     @Operation(summary = "Deleta uma tarefa pelo ID")
     public ResponseEntity<Void> deleteTask(@PathVariable("id") long id) {
-        try {
-            // Verifica se a tarefa existe no banco de dados
-            if (taskRepository.existsById(id)) {
-                taskRepository.deleteById(id);
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            } else {
-                return new ResponseEntity<>(HttpStatus.ACCEPTED);
-            }
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        if (taskRepository.existsById(id)) {
+            taskRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.accepted().build();
         }
     }
-
 }
