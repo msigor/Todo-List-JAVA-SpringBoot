@@ -14,7 +14,7 @@ public class Roteiro01Application {
         return new WebMvcConfigurer() {
  
             @Override
-            public void addCorsMappings(CorsRegistry registry) {
+            public void addCorsMappings(@SuppressWarnings("null") CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins("*")
                         .allowedMethods("*")

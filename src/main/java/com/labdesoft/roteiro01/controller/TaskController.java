@@ -31,6 +31,7 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
+    @SuppressWarnings("null")
     @GetMapping("/task")
     @Operation(summary = "Lista todas as tarefas da lista")
     public ResponseEntity<List<Task>> listAll() {
@@ -46,6 +47,7 @@ public class TaskController {
     }
 
 
+    @SuppressWarnings("null")
     @PostMapping("/task")
     @Operation(summary = "Cria uma nova tarefa")
     public ResponseEntity<Task> createTask(@RequestBody Task newTask) {
@@ -69,6 +71,7 @@ public class TaskController {
         }
     }
 
+    @SuppressWarnings("null")
     @PutMapping("/task/{id}/complete")
     @Operation(summary = "Marca uma tarefa como concluida")
     public ResponseEntity<Task> completeTask(@PathVariable("id") Long id) {
@@ -89,6 +92,7 @@ public class TaskController {
 }
 
     // apagar depois do teste
+    @SuppressWarnings("null")
     @GetMapping("/task/{id}")
     @Operation(summary = "Recupera uma tarefa pelo ID")
     public ResponseEntity<Task> getTaskById(@PathVariable("id") Long id) {
