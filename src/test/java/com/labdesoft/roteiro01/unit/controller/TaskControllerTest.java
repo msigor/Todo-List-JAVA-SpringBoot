@@ -1,4 +1,5 @@
 package com.labdesoft.roteiro01.unit.controller;
+
 import com.labdesoft.roteiro01.controller.TaskController;
 import com.labdesoft.roteiro01.entity.Task;
 import com.labdesoft.roteiro01.repository.TaskRepository;
@@ -13,7 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class TaskControllerTest {
@@ -48,8 +51,11 @@ public class TaskControllerTest {
         // Verifica se a resposta é bem-sucedida
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
 
-        // Verifica se a tarefa retornada possui um ID não nulo
+        // Verifica se a tarefa retornada não é nula
         Task createdTask = responseEntity.getBody();
+        assertNotNull(createdTask, "A tarefa criada não deve ser nula.");
+
+        // Verifica se a tarefa retornada possui um ID não nulo
         assertEquals(1L, createdTask.getId()); // Supondo que o ID atribuído seja 1
         assertEquals("Nova Tarefa", createdTask.getDescription()); // Verifica se a descrição está correta
     }

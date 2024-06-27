@@ -45,7 +45,7 @@ public class Task {
 
     private Boolean completed;
 
-    public Task(String description, TaskType type, TaskPriority priority) {
+    public Task(String description, TaskType type, TaskPriority priority, LocalDate finalDate) {
         this.description = description;
         this.type = type;
         this.priority = priority;
