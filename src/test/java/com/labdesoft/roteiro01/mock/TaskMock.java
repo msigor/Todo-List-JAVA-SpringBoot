@@ -1,29 +1,31 @@
 package com.labdesoft.roteiro01.mock;
 
 import com.labdesoft.roteiro01.entity.Task;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
+import com.labdesoft.roteiro01.entity.TaskPriority;
+import com.labdesoft.roteiro01.entity.TaskType;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskMock {
-    public static Page<Task> createTasks() {
-        List<Task> taskList = new ArrayList<>();
-        Task task1 = new Task();
-        task1.setId(1L);
-        task1.setDescription("Tarefa 1");
+public static List<Task> createTasks() {
+        List<Task> tasks = new ArrayList<>();
 
-        Task task2 = new Task();
-        task2.setId(2L);
-        task2.setDescription("Tarefa 2");
+        // Criando algumas tarefas fictícias
+        Task task1 = new Task("Descrição da Tarefa 1", TaskType.DATA, TaskPriority.ALTA);
+        task1.setFinalDate(LocalDate.now().plusDays(7)); // Defina a data final da tarefa
+        task1.setCompleted(false); // Defina se a tarefa está completa ou não
 
-        taskList.add(task1);
-        taskList.add(task2);
+        Task task2 = new Task("Descrição da Tarefa 2", TaskType.PRAZO, TaskPriority.MEDIA);
+        task2.setFinalDate(LocalDate.now().plusDays(5)); // Defina a data final da tarefa
+        task2.setCompleted(true); // Defina se a tarefa está completa ou não
 
-        Page<Task> pagedResponse = new PageImpl<>(taskList);
+        // Adicionando as tarefas à lista
+        tasks.add(task1);
+        tasks.add(task2);
 
-        return pagedResponse;
+        return tasks;
     }
 }
 
